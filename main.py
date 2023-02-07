@@ -20,6 +20,19 @@ class Window(QMainWindow):
 
         elif event.key() == Qt.Key_Minus:
             self._map.scale_down()
+
+        elif event.key() == Qt.Key_Up:
+            self._map.move_center(1)
+
+        elif event.key() == Qt.Key_Down:
+            self._map.move_center(3)
+
+        elif event.key() == Qt.Key_Left:
+            self._map.move_center(2)
+
+        elif event.key() == Qt.Key_Right:
+            self._map.move_center(0)
+
         self.update_image()
 
     def update_image(self):
