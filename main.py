@@ -14,6 +14,13 @@ class Window(QMainWindow):
         uic.loadUi('window.ui', self)
         self.update_image()
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Plus:
+            self._map.scale_up()
+
+        elif event.key() == Qt.Key_Minus:
+            self._map.scale_down()
+        self.update_image()
 
     def update_image(self):
         image_bytes = self._map.get_image()

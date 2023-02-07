@@ -7,6 +7,16 @@ class Map:
         self._centre_pos = center_pos
         self._z = z
 
+    def scale_up(self):
+        self._z += 1
+        if self._z > 14:
+            self._z = 14
+
+    def scale_down(self):
+        self._z -= 1
+        if self._z < 0:
+            self._z = 0
+
     def get_image(self):
         url = 'https://static-maps.yandex.ru/1.x/'
         params = {'ll': ",".join(map(str, self._centre_pos)),  # широтаб долгота
