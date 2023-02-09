@@ -1,48 +1,69 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel
-import sys
-from PyQt5.QtCore import Qt
-from utils import Map
-from PyQt5 import uic
-from PyQt5.QtGui import QPixmap
+from flask import Flask, url_for
+
+app = Flask('app')
 
 
-class Window(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self._map = Map((37, 55), 10)
-        # self._map_image = QLabel()
-        uic.loadUi('window.ui', self)
-        self.update_image()
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Plus:
-            self._map.scale_up()
-
-        elif event.key() == Qt.Key_Minus:
-            self._map.scale_down()
-
-        elif event.key() == Qt.Key_Up:
-            self._map.move_center(1)
-
-        elif event.key() == Qt.Key_Down:
-            self._map.move_center(3)
-
-        elif event.key() == Qt.Key_Left:
-            self._map.move_center(2)
-
-        elif event.key() == Qt.Key_Right:
-            self._map.move_center(0)
-
-        self.update_image()
-
-    def update_image(self):
-        image_bytes = self._map.get_image()
-        image_pixmap = QPixmap()
-        image_pixmap.loadFromData(image_bytes)
-        self.label.setPixmap(image_pixmap)
+@app.route('/')
+def index():
+    return f"""
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<h1>Миссия Колонизация Марса</h1>
+</body>
+</html>
+"""
 
 
-app = QApplication(sys.argv)
-window = Window()
-window.show()
-app.exec()
+@app.route('/index/')
+def index1():
+    return f"""
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<h1>И на Марсе будут яблони цвести!</h1>
+</body>
+</html>
+"""
+
+@app.route('/promotion/')
+def index2():
+    return f"""
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<b>
+Человечество вырастает из детства.</br></br>
+Человечеству мала одна планета.</br></br>
+Мы сделаем обитаемыми безжизненные пока планеты.</br></br>
+И начнем с Марса!</br></br>
+Присоединяйся!
+</b>
+</body>
+</html>
+"""
+
+@app.route('/image_mars/')
+def index3():
+    return f"""
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<h1>Жди нас марс.</h1></br>
+<img src="{url_for('static', filename='img/mars.png')}" 
+           alt="здесь должна была быть картинка, но не нашлась"></br>
+Вот она какая, красная планета.
+</body>
+</html>
+"""
+
+
+app.run(debug='True', port=8080)
