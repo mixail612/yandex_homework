@@ -208,7 +208,6 @@ def form_sample():
         return "Форма отправлена"
 
 
-
 @app.route('/choice/<planet>')
 def choice(planet):
     return f"""
@@ -235,6 +234,31 @@ crossorigin="anonymous">
 <div class="alert alert-danger" role="alert">
         <h5>Наконец она просто красива!</h5>
 </div>
+</body>
+</html>
+"""
+
+
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def results(nickname, level, rating):
+    return f"""
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+crossorigin="anonymous">
+</head>
+<body>
+<h1>Результаты отбора</h1></br>
+<h2>Претендента на участие в миссии {nickname}:</h2></br>
+<div class="alert alert-success" role="alert">
+        <h5>Поздравляем!Ваш рейтинг после {level} этапа отбора</h5>
+</div>
+<h3>составляет {rating} !
+<div class="alert alert-warning" role="alert">
+        <h5>Желаем удачи!</h5>
 </body>
 </html>
 """
