@@ -209,4 +209,35 @@ def form_sample():
 
 
 
+@app.route('/choice/<planet>')
+def choice(planet):
+    return f"""
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+crossorigin="anonymous">
+</head>
+<body>
+<h1>Моё предложение: {planet}.</h1></br>
+<h2>Эта планета близка к Земле;</h2></br>
+<div class="alert alert-success" role="alert">
+        <h5>На ней много необходимых ресурсов;</h5>
+</div>
+<div class="alert alert-secondary" role="alert">
+        <h5>На ней есть вода и атмосфера;</h5>
+</div>
+<div class="alert alert-warning" role="alert">
+        <h5>На ней есть небольшое магнитное поле;</h5>
+</div>
+<div class="alert alert-danger" role="alert">
+        <h5>Наконец она просто красива!</h5>
+</div>
+</body>
+</html>
+"""
+
+
 app.run(debug='True', port=8080)
